@@ -1,4 +1,9 @@
-pillow
-argparse
-python-docx
-tqdm
+asgiref==3.8.1
+Django==5.1.2
+lxml==5.3.0
+pillow==10.4.0
+python-docx==1.1.2
+python-dotenv==1.0.1
+sqlparse==0.5.1
+tqdm==4.66.5
+typing_extensions==4.12.2

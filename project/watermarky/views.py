@@ -9,7 +9,7 @@ def watermark_image(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            print('valid')
+            pass
         else:
             return Http404("Error")
         processed_document = watermark_doc(request.FILES.get("fileUpload"), request.POST['name'])

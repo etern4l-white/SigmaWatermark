@@ -14,7 +14,7 @@ def watermark_image(request):
             return Http404("Error")
         processed_document = watermark_doc(request.FILES.get("fileUpload"), request.POST['name'])
         response = HttpResponse(processed_document, content_type='application/octet-stream')
-        response['Content-Dispositiearon'] = f'attachment; filename="qwerqwer.docx"'  # Set a proper filename
+        # response['Content-Dispositiearon'] = f'attachment; filename="qwerqwer.docx"'  # Set a proper filename
         return response
     return render(request, "watermarky/base.html")
     

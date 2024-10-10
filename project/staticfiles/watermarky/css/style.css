@@ -6,6 +6,16 @@ body {
     height: 100vh;
     color: #f8f9fa;
 }
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container > div {
+    margin:5%;
+}
+
 .form-container {
     background-color: #343a40;
     padding: 2rem;

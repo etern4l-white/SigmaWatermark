@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import zipfile
 from io import BytesIO
-from django.contrib.staticfiles import finders
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 
 def get_padding(string, box_width, font):
@@ -24,7 +24,7 @@ def add_watermark(original_image, format, name, border_color, text_color):
                     outline=border_color, width=border_width)
 
     font_size = 28
-    font = ImageFont.truetype(finders.find('fonts/Arial.ttf'), font_size)
+    font = ImageFont.truetype(staticfiles_storage.path('fonts/Arial.ttf'), font_size)
     padding_name = get_padding(name, box_width, font)
     text = f"{' '*padding_name}{name}{' '*(padding_name-1)}\n"
     draw.text(position, text, font=font, fill=text_color)
@@ -52,6 +52,7 @@ def watermark_doc(document_bytes, name):
                     try:
                         new_image = watermark_image(org_image, name)
                     except Exception as e:
+                        print(e)
                         print("Error at", file.filename)
                         org_image.seek(0)
                         new_image = org_image.read()

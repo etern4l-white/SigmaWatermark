@@ -24,7 +24,10 @@ def add_watermark(original_image, format, name, border_color, text_color):
                     outline=border_color, width=border_width)
 
     font_size = 28
-    font = ImageFont.truetype(staticfiles_storage.path('fonts/Arial.ttf'), font_size)
+    try:
+        font = ImageFont.truetype(staticfiles_storage.path('fonts/Arial.ttf'), font_size)
+    except Exception as e:
+        font = ImageFont.load_default(size=20)
     padding_name = get_padding(name, box_width, font)
     text = f"{' '*padding_name}{name}{' '*(padding_name-1)}\n"
     draw.text(position, text, font=font, fill=text_color)
@@ -38,6 +41,7 @@ def add_watermark(original_image, format, name, border_color, text_color):
 
 def watermark_image(image_bytes, name):
     img = Image.open(image_bytes)
+    
     img_format = img.format
     img_with_watermark = add_watermark(img, img_format, name, "red", 'red')
     return img_with_watermark.read()
